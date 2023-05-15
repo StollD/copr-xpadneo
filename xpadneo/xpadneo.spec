@@ -2,7 +2,7 @@
 %global forgeurl https://github.com/atar-axis/xpadneo
 
 Name: xpadneo
-Version: 0.9.1
+Version: 0.9.5
 Release: 1%{?dist}
 Summary: Advanced linux driver for Xbox One Wireless Gamepad
 
@@ -30,12 +30,14 @@ Advanced Linux Driver for Xbox One Wireless Controller (shipped with Xbox One S)
 
 %install
 install -Dpm 0644 hid-xpadneo/etc-modprobe.d/xpadneo.conf %{buildroot}%{_modprobedir}/xpadneo.conf
+install -Dpm 0644 hid-xpadneo/etc-udev-rules.d/50-xpadneo-fixup-steamlink.rules %{buildroot}%{_udevrulesdir}/50-xpadneo-fixup-steamlink.rules
 install -Dpm 0644 hid-xpadneo/etc-udev-rules.d/60-xpadneo.rules %{buildroot}%{_udevrulesdir}/60-xpadneo.rules
 
 %files
 %{_modprobedir}/xpadneo.conf
+%{_udevrulesdir}/50-xpadneo-fixup-steamlink.rules
 %{_udevrulesdir}/60-xpadneo.rules
-
+  
 %changelog
 * Fri Jul 16 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.9.1-1
 - Initial package
